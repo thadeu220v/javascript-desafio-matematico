@@ -7,35 +7,54 @@
 </head>
 <body>
     <h1>Desafio matemático</h1>
-    
-<p id ="n1"></p>
-<p id="operacao"></p>
-<p id = "n2"></p>
-<label for="resultado">Resultado
-<input type="number" name="resultado" id="resultado">
-</label>
-<button>Enviar e conferir resultado</button>
-<h3 id="resposta"></h3>
 
-<script>
+    <p id="n1"></p>
+    <p id="operacao"></p>
+    <p id="n2"></p>
+    <label for="respostaUsuario">Sua resposta:
+        <input type="number" name="respostaUsuario" id="respostaUsuario">
+    </label>
+    <button>Enviar e conferir resultado</button>
+    <h3 id="resultado"></h3>
 
-function gerarNumerosAleatorios(min, max) {
-    return Math.floor(Math.random() * (max - min +1)) + min;
-}
+    <script>
+        function gerarNumerosAleatorios(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
 
-function gerarOperacao() {
-const operadores = ["+", "-", "*", "/"]
-return operadores[Math.floor(Math.random() * operadores.length)];
-}
+        function gerarOperacao() {
+            const operadores = ["+", "-", "*", "/"];
+            return operadores[Math.floor(Math.random() * operadores.length)];
+        }
 
+        let nivel = 1;
+        let numero1, numero2, operacao, respostaCorreta;
 
-let numero1 = gerarNumerosAleatorios(1, 30);
-let numero2 = gerarNumerosAleatorios(1, 30);
-let operacao = gerarOperacao();
+        function novoNivel() {
+            numero1 = gerarNumerosAleatorios(1, 30 * nivel);
+            numero2 = gerarNumerosAleatorios(1, 30 * nivel);
+            operacao = gerarOperacao();
 
+            document.getElementById('n1').textContent = numero1;
+            document.getElementById('operacao').textContent = operacao;
+            document.getElementById('n2').textContent = numero2;
 
+            respostaCorreta = eval(`${numero1} ${operacao} ${numero2}`);
+        }
 
+        novoNivel();
 
-</script>
+        document.querySelector('button').addEventListener('click', () => {
+            let respostaUsuario = parseInt(document.getElementById('respostaUsuario').value);
+
+            if (respostaUsuario === respostaCorreta) {
+                document.getElementById('resultado').textContent = "Parabéns! Você acertou! Próximo nível!";
+                nivel++;
+                novoNivel();
+            } else {
+                document.getElementById('resultado').textContent = "Resposta incorreta. Tente novamente!";
+            }
+        });
+    </script>
 </body>
 </html>
