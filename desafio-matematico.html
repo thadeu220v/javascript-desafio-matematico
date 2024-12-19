@@ -16,7 +16,9 @@
     </label>
     <button>Enviar e conferir resultado</button>
     <h3 id="resultado"></h3>
-
+<h3>Pontuações</h3>
+    <p id="acertos"></p>
+    <p id="erros"></p>
     <script>
         function gerarNumerosAleatorios(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -28,7 +30,7 @@
         }
 
         let nivel = 1;
-        let numero1, numero2, operacao, respostaCorreta;
+        let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
 
         function novoNivel() {
             numero1 = gerarNumerosAleatorios(1, 30 * nivel);
@@ -49,10 +51,16 @@
 
             if (respostaUsuario === respostaCorreta) {
                 document.getElementById('resultado').textContent = "Parabéns! Você acertou! Próximo nível!";
+totalAcertos++;
+                document.getElementById('acertos').textContent = 'total de acertos = '+totalAcertos + ' acertos';
                 nivel++;
                 novoNivel();
             } else {
-                document.getElementById('resultado').textContent = "Resposta incorreta. Tente novamente!";
+                document.getElementById('resultado').textContent = "Resposta incorreta. próximo nível!";
+                totalErros++;
+                document.getElementById('erros').textContent = 'total de erros = '+totalErros + ' erros';
+                nivel++;
+                novoNivel();
             }
         });
     </script>
