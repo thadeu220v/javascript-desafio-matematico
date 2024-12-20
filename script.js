@@ -6,7 +6,6 @@
 
 
 
- let nivel = 1;
 let rodada = 1;
 let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
 
