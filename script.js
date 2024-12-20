@@ -8,14 +8,12 @@
 
         let nivel = 1;
         let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
-        const nomeDoJogador = document.getElementById('nome-do-jogador').value;
-        document.getElementById('nome-do-jogador-exibicao').textContent = 'Nome do jogador: ' + nomeDoJogador + '!';
         
         
 
         iniciarJogo();
 
-        document.querySelector('calcular').addEventListener('click', () => {
+        document.getElementById('calcular').addEventListener('click', () => {
             let respostaUsuario = parseInt(document.getElementById('respostaUsuario').value);
 
             if (respostaUsuario === respostaCorreta) {
