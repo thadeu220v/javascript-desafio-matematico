@@ -8,9 +8,19 @@
 
 let rodada = 1;
 let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
+const divDadosJogador = document.getElementById('dados-jogador');
+const divJogoPrincipal = document.getElementById('jogo-principal');
 
+divJogoPrincipal.style.display = 'none';
 iniciarJogo();
+document.getElementById('iniciar').addEventListener('click', () => {
+    divDadosJogador.style.display = 'none';
+    divJogoPrincipal.style.display = 'block';
+    let nome_jogador = document.getElementById('nomejogador').value;
+document.getElementById('nomejogador-exibicao').textContent = 'Nome do jogador: ' + nome_jogador;
+});
 
+// ao clicar no botão de calcular executa as atividades abaixo
 document.getElementById('calcular').addEventListener('click', () => {
     let respostaUsuario = parseInt(document.getElementById('respostaUsuario').value);
 

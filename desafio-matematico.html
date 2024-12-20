@@ -8,7 +8,17 @@
 </head>
 
 <body>
+    <div id="dados-jogador">
+<h3>Vamos jogar?</h3>
+<p>Informe seu nome completo para registrarmos o início do seu jogo</p>
+<label for="nomejogador">Nome do jogador (Obrigatório)
+<input type="text" name="nomejogador" id="nomejogador" autocomplete="given-name" id="" required />
+</label><br>
+<button id="iniciar">Iniciar jogo</button>
+    </div>
+    <div id="jogo-principal">
     <h1>Desafio matemático</h1>
+    <p id="nomejogador-exibicao">Olá, jogador</p>
     <p>Desafie-se nesse jogo de matemática que desafia suas habilidades, gerando os mais diversos desafios.</p>
     
 <p id="rodada"></p>
@@ -23,6 +33,7 @@
     <h3>Pontuações</h3>
     <p id="acertos"></p>
     <p id="erros"></p>
+</div>
 </body>
 <script src="includes/funcoes.js"></script>
 <script src="script.js"></script>
