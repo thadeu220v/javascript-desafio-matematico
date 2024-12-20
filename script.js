@@ -6,27 +6,31 @@
 
 
 
-        let nivel = 1;
-        let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
-        
-        
+ let nivel = 1;
+let rodada = 1;
+let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
 
+iniciarJogo();
+
+document.getElementById('calcular').addEventListener('click', () => {
+    let respostaUsuario = parseInt(document.getElementById('respostaUsuario').value);
+
+    if (respostaUsuario === respostaCorreta) {
+        document.getElementById('resultado').textContent = "Parabéns! Você acertou! Próximo nível!";
+        totalAcertos++;
+        document.getElementById('acertos').textContent = 'total de acertos = ' + totalAcertos + ' acertos';
+    } else {
+        document.getElementById('resultado').textContent = "Resposta incorreta. próximo nível!";
+        totalErros++;
+        document.getElementById('erros').textContent = 'total de erros = ' + totalErros + ' erros';
+    }
+
+    rodada++;
+    document.getElementById('rodada').textContent = 'rodada atual de nº ' + rodada;
+
+    if (rodada > 25) {
+        novoNivel();
+    } else {
         iniciarJogo();
-
-        document.getElementById('calcular').addEventListener('click', () => {
-            let respostaUsuario = parseInt(document.getElementById('respostaUsuario').value);
-
-            if (respostaUsuario === respostaCorreta) {
-                document.getElementById('resultado').textContent = "Parabéns! Você acertou! Próximo nível!";
-                totalAcertos++;
-                document.getElementById('acertos').textContent = 'total de acertos = ' + totalAcertos + ' acertos';
-                nivel++;
-                iniciarJogo();
-            } else {
-                document.getElementById('resultado').textContent = "Resposta incorreta. próximo nível!";
-                totalErros++;
-                document.getElementById('erros').textContent = 'total de erros = ' + totalErros + ' erros';
-                nivel++;
-                iniciarJogo();
-            }
-        });
+    }
+});
