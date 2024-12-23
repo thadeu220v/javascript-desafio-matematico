@@ -6,12 +6,15 @@
 
 
 
-let rodada = 1;
+
+let vidas = 5;
 let numero1 = 0, numero2 = 0, operacao = 0, respostaCorreta = 0, totalAcertos = 0, totalErros = 0;
 const divDadosJogador = document.getElementById('dados-jogador');
 const divJogoPrincipal = document.getElementById('jogo-principal');
+const div_tela_game_over = document.getElementById('tela-game-over');
 
 divJogoPrincipal.style.display = 'none';
+div_tela_game_over.style.display = 'none';
 iniciarJogo();
 document.getElementById('iniciar').addEventListener('click', () => {
     divDadosJogador.style.display = 'none';
@@ -25,21 +28,26 @@ document.getElementById('calcular').addEventListener('click', () => {
     let respostaUsuario = parseInt(document.getElementById('respostaUsuario').value);
 
     if (respostaUsuario === respostaCorreta) {
-        document.getElementById('resultado').textContent = "Parabéns! Você acertou! Próximo nível!";
+document.getElementById('resultado').textContent = "Parabéns! Você acertou! Próximo nível!";
         totalAcertos++;
         document.getElementById('acertos').textContent = 'total de acertos = ' + totalAcertos + ' acertos';
+iniciarJogo();
     } else {
         document.getElementById('resultado').textContent = "Resposta incorreta. próximo nível!";
         totalErros++;
+        vidas--;
         document.getElementById('erros').textContent = 'total de erros = ' + totalErros + ' erros';
+        document.getElementById('vidas').textContent = 'Ainda restam ' + vidas + ' vidas!';
+        iniciarJogo();
     }
 
-    rodada++;
-    document.getElementById('rodada').textContent = 'rodada atual de nº ' + rodada;
+    
 
-    if (rodada > 25) {
+    if (totalAcertos >= 25) {
         novoNivel();
-    } else {
-        iniciarJogo();
+    }
+    else if(totalErros == 5) {
+        divJogoPrincipal.style.display = 'none';
+        div_tela_game_over.style.display = 'block';
     }
 });
